@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link href="index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <br>
+        {{ message }}
+        <br>
+        <a v-bind:href="link">vue documentation</a>
+        <p v-html="finishedLink"></p>
+        <div style="margin: 30px">
+            <button v-on:click="add(1)">click me</button>
+            <p>{{counter}}</p>
+        </div>
+        <div style="margin: 30px">
+            <button @click="changeName()">change name</button>
+            <p>{{fullName}}</p>
+        </div>
+        <div class="block"
+             @click="attachRed = !attachRed"
+             :class="divClasses"></div>
+
+        <div class="block"
+             :class="[color, {red: attachRed}]"></div>
+        <input type="text" v-model="color">
+        <div>
+            <div v-if="show">show ng if</div>
+            <h1 v-else>Oh no 😢</h1>
+            <div v-show="show">you see me?</div>
+            <button @click="show = !show">show/hide</button>
+        </div>
+        <template v-for="(el, i) in names">
+            <div :class="{red: i % 2 === 0, yellow: i % 2 !== 0}" :key="i">
+                name: {{el.name}} lastName: {{el.lastName}} index: {{i}}
+            </div>
+        </template>
+        <button @click="addToArray">add item to array</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

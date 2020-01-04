@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue</title>
+  <link href="index.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div>
+    <div id="app1">
+      <h1 ref="heading">{{ title }}</h1>
+      <button v-on:click="show">Show Paragraph</button>
+      <p v-if="showParagraph">This is not always visible</p>
+    </div>
+    <div id="app2">
+      <h1 ref="heading" @click="onChange">{{ title }}</h1>
+      <hello></hello>
+      <hello></hello>
+      <hello></hello>
+      <hello></hello>
+    </div>
+    <div id="app3"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

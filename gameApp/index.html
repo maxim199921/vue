@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">YOU</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center"
+                     :style="{backgroundColor: 'green', margin: 0, color: 'white', width: myHealth + '%'}">
+                    {{ myHealth }}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">MONSTER</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center"
+                     :style="{backgroundColor: 'green', margin: 0, color: 'white',  width: monsterHealth + '%'}">
+                    {{ monsterHealth }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if="!statusGame" @click="startGame">
+        <div class="small-12 columns">
+            <button id="start-game">START NEW GAME</button>
+        </div>
+    </section>
+    <section class="row controls" v-else>
+        <div class="small-12 columns">
+            <button id="attack" @click="attack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+            <button id="heal" @click="heal">HEAL</button>
+            <button id="give-up" @click="giveUp">GIVE UP</button>
+        </div>
+    </section>
+    <section class="row log" v-if="statusGame">
+        <div class="small-12 columns">
+            <template v-for="(el, i) in logger.slice(0, 10)">
+                <div :class="{even: i % 2 === 0, odd: i % 2 !== 0}" :key="i">
+                    {{el.message}}
+                </div>
+            </template>
+        </div>
+    </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
