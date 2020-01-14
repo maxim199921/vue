@@ -1,0 +1,42 @@
+.label-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: .88888889em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+    border: 1px solid #000000;
+    opacity: 0.5;
+}
+
+.label-checkbox input:checked ~ .checkmark {
+    opacity: 1;
+    background-color: #8262b0;
+    border-color: #8262b0;
+}
+
+
+
+
+
+
