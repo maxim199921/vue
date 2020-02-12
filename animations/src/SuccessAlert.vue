@@ -1,6 +1,4 @@
 <template>
-    <template>
-        <div class="alert alert-danger">This is dangeres</div>
-    </template>
-
+    <div class="alert alert-success">This is success</div>
 </template>
+

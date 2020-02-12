@@ -4,6 +4,17 @@
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <h1>Animations</h1>
                 <hr>
+                <button class="btn btn-primary" @click="addItem()">Add item</button>
+                <ul class="list-group">
+                    <transition-group name="slide">
+                        <li class="list-group-item"
+                            :key="index"
+                            v-for="(number, index) of numbers"
+                            @click="removeItem(index)">{{ number }}</li>
+                    </transition-group>
+                </ul>
+                <br>
+                <br>
                 <select v-model="alertAnimation">
                     <option value="fade">fade</option>
                     <option value="slide">slide</option>
@@ -38,22 +49,45 @@
                     appear>
                     <div style="width: 300px; height: 100px; background: greenyellow" v-if="load"></div>
                 </transition>
+                <hr>
+                <button class="btn btn-primary" @click="changeComponent">Toogle Components</button>
+                <br>
+                <br>
+                <transition name="slide" mode="out-in">
+                    <component :is="selectedComponent"></component>
+                </transition>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import DangerAlert from "./DangerAlert.vue"
+    import SuccessAlert from "./SuccessAlert.vue"
+
     export default {
         data() {
             return {
                 show: false,
                 alertAnimation: 'slide',
                 load: true,
-                elementWidth: 100
+                elementWidth: 100,
+                selectedComponent: 'app-success-alert',
+                numbers: [1, 2, 3]
             }
         },
         methods: {
+            changeComponent() {
+                (this.selectedComponent === 'app-success-alert')
+                    ? this.selectedComponent = 'app-danger-alert'
+                    : this.selectedComponent = 'app-success-alert';
+            },
+            addItem() {
+                this.numbers.push(this.numbers[this.numbers.length - 1] + 1);
+            },
+            removeItem(index) {
+                this.numbers.splice(index, 1);
+            },
             beforEnter(el) {
                 this.elementWidth = 100;
                 el.style.width = this.elementWidth + 'px';
@@ -88,6 +122,10 @@
             },
             afterLeave() {},
             leaveCancelled() {},
+        },
+        components: {
+            appDangerAlert: DangerAlert,
+            appSuccessAlert: SuccessAlert
         }
     }
 </script>
@@ -119,6 +157,9 @@
         animation: slide-out 1s ease-out forwards;
         transition: opacity 1s;
         opacity: 0;
+    }
+    .slide-move {
+        transition: transform 1s;
     }
     @keyframes slide-in {
         from {
